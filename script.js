@@ -29,12 +29,13 @@ function startGame() {
   
   
   startTimer()
+  time = setInterval(startTimer, 1000)
   setNextQuestion()
 }
 
 
 function startTimer (){
-  var time = setInterval(startTimer, 1000)
+  
   timer.innerHTML = sec + "sec left";
     sec--;
     if (sec == -1) {
