@@ -35,7 +35,7 @@ function startGame() {
 
 function startTimer (){
   var time = setInterval(startTimer, 1000)
-  document.getElementById('timer').innerHTML = sec + "sec left";
+  timer.innerHTML = sec + "sec left";
     sec--;
     if (sec == -1) {
         clearInterval(time);
