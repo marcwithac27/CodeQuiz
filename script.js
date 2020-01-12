@@ -1,4 +1,6 @@
-var sec = 10
+var sec = 60
+var score =0
+var correctAnswers = 0 
 var recordsEl = document.getElementById('records')
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
@@ -88,6 +90,7 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
+  
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
@@ -109,6 +112,7 @@ function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
+
 
 var questions = [
   {
@@ -148,3 +152,8 @@ var questions = [
     ]
   }
 ]
+
+var answered = [
+
+]
+console.log(answered)
