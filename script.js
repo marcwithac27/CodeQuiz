@@ -1,5 +1,4 @@
-var sec = 60;
-var time = setInterval(startTimer, 1000)
+
 var recordsEl = document.getElementById('records')
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
@@ -9,7 +8,9 @@ var answerButtonsElement = document.getElementById('answer-buttons')
 var timerElement= document.getElementById('timer')
 var currentScoreEl = document.getElementById('current-score')
 var highScoreEl = document.getElementById('high-score')
-let shuffledQuestions, currentQuestionIndex
+var outOfTimeEl = document.getElementById('outOfTime')
+var containerEl = document.getElementById('container')
+var shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -26,16 +27,25 @@ function startGame() {
   startTimer()
   setNextQuestion()
 }
+var sec = 10;
+var time = setInterval(startTimer, 1000)
 
 function startTimer (){
   document.getElementById('timer').innerHTML = sec + "sec left";
     sec--;
     if (sec == -1) {
         clearInterval(time);
-        alert("Time out!! :(");
+        resetGame();
     }
 
 }
+
+function resetGame(){
+  containerEl.classList.add('hide')
+  recordsEl.classList.add('hide')
+  outOfTimeEl.classList.remove('hide')
+}
+
 
 
 
