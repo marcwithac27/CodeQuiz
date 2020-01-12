@@ -72,6 +72,7 @@ function showQuestion(question) {
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
+    
   })
 }
 
@@ -83,19 +84,17 @@ function resetState() {
   }
 }
 
-function selectAnswer(e) {
-  var selectedButton = e.target
-  var correct = selectedButton.dataset.correct
-  setStatusClass(document.body, correct)
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  
+var selectedAnswer = selectedButton.getAttribute('data-correct')
+if (selectedAnswer) { correctAnwsers ++ }
+// or if you have an empty array up top somewhere, i see 'answered' but its at the bottom. Generally variables should be up top
+if (selectedAnswer) { answered.push('correct') }
+
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
+    
   }
 }
 
