@@ -1,9 +1,14 @@
+var sec = 60;
+var time = setInterval(startTimer, 1000)
+var recordsEl = document.getElementById('records')
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
 var questionContainerElement = document.getElementById('question-container')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
-
+var timerElement= document.getElementById('timer')
+var currentScoreEl = document.getElementById('current-score')
+var highScoreEl = document.getElementById('high-score')
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
@@ -17,8 +22,22 @@ function startGame() {
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
+  recordsEl.classList.remove('hide')
+  startTimer()
   setNextQuestion()
 }
+
+function startTimer (){
+  document.getElementById('timer').innerHTML = sec + "sec left";
+    sec--;
+    if (sec == -1) {
+        clearInterval(time);
+        alert("Time out!! :(");
+    }
+
+}
+
+
 
 function setNextQuestion() {
   resetState()
@@ -78,35 +97,39 @@ function clearStatusClass(element) {
 
 var questions = [
   {
-    question: 'What is 2 + 2?',
+    question: 'What is the Capital Of Florida',
     answers: [
-      { text: '4', correct: true },
-      { text: '22', correct: false }
+      { text: 'Tallahassee', correct: true },
+      { text: 'Miami', correct: false },
+      { text: 'Tampa', correct: false},
+      { text: 'Sanford', correct: false}
     ]
   },
   {
-    question: 'Who is the best YouTuber?',
+    question: 'Who is the Governer of Florida?',
     answers: [
-      { text: 'Web Dev Simplified', correct: true },
-      { text: 'Traversy Media', correct: true },
-      { text: 'Dev Ed', correct: true },
-      { text: 'Fun Fun Function', correct: true }
+      { text: 'Ron DeSantis', correct: true },
+      { text: 'Rick Scott', correct: false },
+      { text: 'Jeb Bush', correct: false },
+      { text: 'Bill Nelson', correct: false }
     ]
   },
   {
-    question: 'Is web development fun?',
+    question: 'When did Florida become a State?',
     answers: [
-      { text: 'Kinda', correct: false },
-      { text: 'YES!!!', correct: true },
-      { text: 'Um no', correct: false },
-      { text: 'IDK', correct: false }
+      { text: '1990', correct: false },
+      { text: '1845', correct: true },
+      { text: '1620', correct: false },
+      { text: '1788', correct: false }
     ]
   },
   {
-    question: 'What is 4 * 2?',
+    question: 'What is the Florida State Flower',
     answers: [
-      { text: '6', correct: false },
-      { text: '8', correct: true }
+      { text: 'Carnation', correct: false },
+      { text: 'Orange Blossom', correct: true },
+      { text: 'Orchid', correct: false},
+      { text: 'Rose', correct: false}
     ]
   }
 ]

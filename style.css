@@ -37,6 +37,15 @@
     padding: 10px;
     box-shadow: 0 0 10px 2px;
   }
+
+  .container-timer {
+      width: 600px;
+      max-width: 50%;
+      border-radius: 5px;
+      justify-content: center;
+      float: left;
+  }
+  
   
   .btn-grid {
     display: grid;
