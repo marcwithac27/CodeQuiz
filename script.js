@@ -1,4 +1,5 @@
-
+var sec = 10;
+var time = setInterval(startTimer, 1000)
 var recordsEl = document.getElementById('records')
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
@@ -27,8 +28,7 @@ function startGame() {
   startTimer()
   setNextQuestion()
 }
-var sec = 10;
-var time = setInterval(startTimer, 1000)
+
 
 function startTimer (){
   document.getElementById('timer').innerHTML = sec + "sec left";
