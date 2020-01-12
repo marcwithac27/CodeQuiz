@@ -1,5 +1,4 @@
-var sec = 10;
-var time = setInterval(startTimer, 1000)
+var sec = 10
 var recordsEl = document.getElementById('records')
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
@@ -13,8 +12,10 @@ var outOfTimeEl = document.getElementById('outOfTime')
 var containerEl = document.getElementById('container')
 var shuffledQuestions, currentQuestionIndex
 
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame,)
+
 nextButton.addEventListener('click', () => {
+  
   currentQuestionIndex++
   setNextQuestion()
 })
@@ -25,12 +26,15 @@ function startGame() {
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   recordsEl.classList.remove('hide')
+  
+  
   startTimer()
   setNextQuestion()
 }
 
 
 function startTimer (){
+  var time = setInterval(startTimer, 1000)
   document.getElementById('timer').innerHTML = sec + "sec left";
     sec--;
     if (sec == -1) {
