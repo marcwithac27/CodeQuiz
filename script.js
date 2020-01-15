@@ -83,20 +83,29 @@ function resetState() {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
-
-var selectedAnswer = selectedButton.getAttribute('data-correct')
-if (selectedAnswer) { correctAnwsers ++ }
-// or if you have an empty array up top somewhere, i see 'answered' but its at the bottom. Generally variables should be up top
-if (selectedAnswer) { answered.push('correct') }
-
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide')
-  } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
-    
+function selectAnswer(e) {
+  var selectedButton = e.target
+  var correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  nextButton.classList.remove()
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+      nextButton.classList.remove('hide')
+    } else {
+      startButton.innerText = 'Restart'
+      startButton.classList.remove('hide')
+      currentScoreEl.innerText = 'Current Score ' + sec
+      stopTimer()
+      
+    }
   }
-}
+  
+  
+  )}
+  function stopTimer() {
+    clearTimeout(time)
+  }
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
@@ -152,7 +161,3 @@ var questions = [
   }
 ]
 
-var answered = [
-
-]
-console.log(answered)
