@@ -12,6 +12,8 @@ var currentScoreEl = document.getElementById('current-score')
 var highScoreEl = document.getElementById('high-score')
 var outOfTimeEl = document.getElementById('outOfTime')
 var containerEl = document.getElementById('container')
+var actualScoreEl = document.getElementById('actual-score')
+var hScoreEl = document.getElementById('highScore')
 var shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame,)
@@ -23,13 +25,13 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
+  sec = 60
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   recordsEl.classList.remove('hide')
-  
-  
+  hScoreEl.innerText = localStorage.getItem("highScore")
   startTimer()
   time = setInterval(startTimer, 1000)
   setNextQuestion()
@@ -40,8 +42,8 @@ function startTimer (){
   
   timer.innerHTML = sec + "sec left";
     sec--;
-    if (sec == -1) {
-        clearInterval(time);
+    if (sec < 0) {
+        clearInterval(time)
         resetGame();
     }
 
@@ -84,27 +86,42 @@ function resetState() {
   }
 }
 function selectAnswer(e) {
+  
   var selectedButton = e.target
   var correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   nextButton.classList.remove()
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
+
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')
     } else {
       startButton.innerText = 'Restart'
       startButton.classList.remove('hide')
-      currentScoreEl.innerText = 'Current Score ' + sec
+      // currentScoreEl.textContent = 'Current Score '
+      
+      actualScoreEl.textContent = sec
       stopTimer()
+      if (actualScoreEl.textContent > hScoreEl.textContent){
+        localStorage.setItem ('highScore', actualScoreEl.textContent)
+        hScoreEl.innerText = localStorage.getItem("highScore")
+        
+      }
+      
       
     }
+  })
+ 
+  
   }
   
-  
-  )}
+
+
   function stopTimer() {
     clearTimeout(time)
+    
+    
   }
 
 function setStatusClass(element, correct) {
@@ -113,8 +130,12 @@ function setStatusClass(element, correct) {
     element.classList.add('correct')
   } else {
     element.classList.add('wrong')
+    sec -=1;
+    
   }
 }
+
+
 
 function clearStatusClass(element) {
   element.classList.remove('correct')
