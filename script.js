@@ -14,6 +14,8 @@ var outOfTimeEl = document.getElementById('outOfTime')
 var containerEl = document.getElementById('container')
 var actualScoreEl = document.getElementById('actual-score')
 var hScoreEl = document.getElementById('highScore')
+var initialsEL = document.getElementById('initials')
+var intEl =document.getElementById('int')
 var shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame,)
@@ -105,10 +107,13 @@ function selectAnswer(e) {
       stopTimer()
       actualScoreEl.textContent = timer.innerText
       if (actualScoreEl.textContent > hScoreEl.textContent){
+        initialsEL.textContent= prompt("Enter Initials Here!!")
         localStorage.setItem ('highScore', actualScoreEl.textContent)
-        hScoreEl.innerText = localStorage.getItem("highScore")
-        
-      }
+        hScoreEl.textContent = localStorage.getItem("highScore")
+        localStorage.setItem('initials', initialsEL.textContent)
+      
+        initialsEL.textContent = localStorage.getItem('initials')}
+      
       
       
     }
