@@ -40,7 +40,7 @@ function startGame() {
 
 function startTimer (){
   
-  timer.innerHTML = sec + "sec left";
+  timer.innerHTML = sec;
     sec--;
     if (sec < 0) {
         clearInterval(time)
@@ -101,8 +101,9 @@ function selectAnswer(e) {
       startButton.classList.remove('hide')
       // currentScoreEl.textContent = 'Current Score '
       
-      actualScoreEl.textContent = sec
+      
       stopTimer()
+      actualScoreEl.textContent = timer.innerText
       if (actualScoreEl.textContent > hScoreEl.textContent){
         localStorage.setItem ('highScore', actualScoreEl.textContent)
         hScoreEl.innerText = localStorage.getItem("highScore")
