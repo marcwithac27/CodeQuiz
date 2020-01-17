@@ -129,8 +129,9 @@ function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
     element.classList.add('correct')
+    sec +=2
   } else {
-    element.classList.add('wrong')
+    element.classList.add('wrong');
     sec -=1;
     
   }
